@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="signup-page.css">
+  <script defer src="signup-page.js"></script>
+</head>
+
+<body>
+  <main id="main-holder">
+    <h1 id="signup-header">Sign Up</h1>
+
+    <div id="signup-error-msg-holder">
+        <p id="signup-error-msg"></p>
+        <p id="signup-success-msg">Account Created!</p>
+      </div>
+    
+    <form id="signup-form">
+      <input type="text" name="username" id="username-field" class="signup-form-field" placeholder="Username">
+      <input type="password" name="password" id="password-field" class="signup-form-field" placeholder="Password">
+      <input type="password" name="confirmPassword" id="confirm-password-field" class="signup-form-field" placeholder="Confirm Password">
+      <input type="submit" value="Sign up" id="signup-form-submit">
+      <input type="submit" value="Log in" id="login-form-submit">
+    </form>
+  
+  </main>
+</body>
+
+</html>
