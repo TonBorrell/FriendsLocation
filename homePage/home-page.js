@@ -28,7 +28,7 @@ async function addLocation(country, city, street) {
 }
 
 if (token == null) {
-    window.location.href = 'index.html'
+    window.location.href = '../loginPage/index.html'
 }
 
 getUser(token).then(response => {
@@ -48,13 +48,13 @@ getLocations(token).then(response => {
 logoutButton.addEventListener("click", (e) => {
     e.preventDefault()
     localStorage.removeItem('token')
-    window.location.href = 'index.html'
+    window.location.href = '../loginPage/index.html'
 })
 
 //Logout if localStorage is removed manually
 window.addEventListener('storage', () => {
     if (localStorage.getItem('token') === null) {
-        window.location.href = 'index.html'
+        window.location.href = '../loginPage/index.html'
     }
 })
 

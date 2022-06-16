@@ -26,7 +26,7 @@ loginButton.addEventListener("click", (e) => {
             const token = response.responseJson.token
             console.log(token)
             localStorage.setItem('token', token)
-            window.location.href = 'home-page.html'
+            window.location.href = '../homePage/home-page.html'
         } else {
             loginSuccessMsg.style.opacity = 0;
             loginErrorMsg.style.opacity = 1;
@@ -36,5 +36,5 @@ loginButton.addEventListener("click", (e) => {
 
 signinButton.addEventListener('click', (e) => {
     e.preventDefault()
-    window.location.href = 'signup-page.html'
+    window.location.href = '../signupPage/signup-page.html'
 })
