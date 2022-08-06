@@ -27,8 +27,20 @@ async function addLocation(country, city, street) {
     return responseJson
 }
 
+// Reset locations list after location is added
+async function addNewLocations(token) {
+    getLocations(token).then(response => {
+        console.log(response)
+        locationList.innerHTML = ''
+        for (let i in response) {
+            locationList.innerHTML += '<div id="location">' + response[i].city + '</div>'
+        }
+    })
+}
+
 function reloadPage() {
-    location.reload()
+    addNewLocations(token)
+    formAddLocation.innerHTML = '<div id="succesMsg">Location Added!</div>'
 }
 
 if (token == null) {
@@ -40,13 +52,9 @@ getUser(token).then(response => {
     userText.innerHTML = `Hola ${username}`
 })
 
+// Create Location list after login
 const locationList = document.getElementById('location-list')
-getLocations(token).then(response => {
-    console.log(response)
-    for (let i in response) {
-        locationList.innerHTML += '<div id="location">' + response[i].city + '</div>'
-    }
-})
+addNewLocations(token)
 
 //Logout if button is clicked
 logoutButton.addEventListener("click", (e) => {
@@ -76,9 +84,8 @@ addLocationButton.addEventListener('click', (e) => {
         if (country != '' && city != '' && street != '') {
             addLocation(country, city, street).then(response => {
                 if (response.ok) {
-                    formAddLocation.innerHTML = '<div id="succesMsg">Location added!</div>'
+                    formAddLocation.innerHTML = '<div id="succesMsg">Adding Location...</div>'
                     setTimeout(reloadPage, 1000)
-
                 } 
             })
         } else {

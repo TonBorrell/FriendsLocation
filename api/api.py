@@ -1,3 +1,4 @@
+from itertools import count
 import json
 from flask import Flask, abort, jsonify
 from flask_restful import Resource, Api, reqparse, fields, marshal_with
@@ -56,12 +57,12 @@ def request_locations():
 
     if request.method == 'DELETE':
         data = json.loads(request.data)
-        userId = data['userId']
         country = data['country']
-        city = data['city']
-        street = data['street']
+        #city = data['city']
+        #street = data['street']
 
-        location = {'country': country, 'city': city, 'street': street, 'userId': userId}
+        #location = {'country': country, 'city': city, 'street': street}
+        location = {'country': country}
 
         if db.locations.count_documents(location):
             db.locations.delete_one(location)
