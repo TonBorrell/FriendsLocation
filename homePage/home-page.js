@@ -33,7 +33,7 @@ async function addNewLocations(token) {
         console.log(response)
         locationList.innerHTML = ''
         for (let i in response) {
-            locationList.innerHTML += '<div id="location">' + response[i].city + '</div>'
+            locationList.innerHTML += `<div id="location-${response[i].locationId}" class="location">` + response[i].city + '</div>'
         }
     })
 }
@@ -71,9 +71,11 @@ window.addEventListener('storage', () => {
 })
 
 const formAddLocation = document.getElementById('add-location-form')
+const addNewLocationButton = document.getElementById('add-location-button')
 addLocationButton.addEventListener('click', (e) => {
     e.preventDefault()
-    if (formAddLocation.innerHTML == '' || formAddLocation.innerHTML == '<div id="succesMsg">Location added!</div>') {
+    addNewLocationButton.style.marginBottom = '20px'
+    if (formAddLocation.innerHTML == '' || formAddLocation.innerHTML == '<div id="succesMsg">Location Added!</div>') {
         formAddLocation.innerHTML = '<input type="text" name="country" id="country-field" class="add-location-form-field" placeholder="Country">'
         formAddLocation.innerHTML += '<input type="text" name="city" id="city-field" class="add-location-form-field" placeholder="City">'
         formAddLocation.innerHTML += '<input type="text" name="street" id="street-field" class="add-location-form-field" placeholder="Street">'
@@ -85,8 +87,9 @@ addLocationButton.addEventListener('click', (e) => {
             addLocation(country, city, street).then(response => {
                 if (response.ok) {
                     formAddLocation.innerHTML = '<div id="succesMsg">Adding Location...</div>'
+                    addNewLocationButton.style.marginBottom = '0px'
                     setTimeout(reloadPage, 1000)
-                } 
+                }
             })
         } else {
             formAddLocation.innerHTML = ''

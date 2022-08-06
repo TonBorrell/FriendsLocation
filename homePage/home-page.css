@@ -30,7 +30,7 @@ html {
     display: grid;
   }
 
-  #location {
+  .location {
     background-color: grey;
     display: grid;
     justify-content: center;
@@ -79,4 +79,12 @@ html {
   
   .add-location-form::placeholder {
     color: #3a3a3a;
+  }
+
+  #succesMsg {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: gray;
+    padding: 20px;
   }

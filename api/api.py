@@ -45,7 +45,7 @@ def request_locations():
         city = data['city']
         street = data['street']
 
-        location = {'country': country, 'city': city, 'street': street, 'userId': userId}
+        location = {'country': country, 'city': city, 'street': street, 'userId': userId, 'locationId': str(uuid.uuid1())[:8]}
 
         if db.locations.count_documents(location):
             return {'error': 'Location already in db'}, 400
@@ -135,7 +135,7 @@ def request_get_locations(userId):
     data = db.locations.find({'userId': userId})
     response = {}
     for index, d in enumerate(data):
-        response[index] = {'country': d['country'], 'city': d['city'], 'street': d['street']}
+        response[index] = {'country': d['country'], 'city': d['city'], 'street': d['street'], 'locationId': d['locationId']}
 
     return response, 200
 
