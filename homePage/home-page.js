@@ -27,6 +27,10 @@ async function addLocation(country, city, street) {
     return responseJson
 }
 
+function reloadPage() {
+    location.reload()
+}
+
 if (token == null) {
     window.location.href = '../loginPage/index.html'
 }
@@ -73,6 +77,8 @@ addLocationButton.addEventListener('click', (e) => {
             addLocation(country, city, street).then(response => {
                 if (response.ok) {
                     formAddLocation.innerHTML = '<div id="succesMsg">Location added!</div>'
+                    setTimeout(reloadPage, 1000)
+
                 } 
             })
         } else {

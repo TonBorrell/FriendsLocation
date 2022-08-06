@@ -55,11 +55,13 @@ def request_locations():
         return {'ok': 'Location Saved'}, 200
 
     if request.method == 'DELETE':
-        country = request.args['country']
-        city = request.args['city']
-        street = request.args['street']
+        data = json.loads(request.data)
+        userId = data['userId']
+        country = data['country']
+        city = data['city']
+        street = data['street']
 
-        location = {'country': country, 'city': city, 'street': street}
+        location = {'country': country, 'city': city, 'street': street, 'userId': userId}
 
         if db.locations.count_documents(location):
             db.locations.delete_one(location)
